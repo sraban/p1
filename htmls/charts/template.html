@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .backdrop {
+      min-height:700px;
+      position: relative;
+    }     
+    .modal, .modal-backdrop {
+        position: absolute !important;
+    }
+    .sidebarRight{
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      background: #448AFF;
+      color: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.64);
+      z-index:10000;
+    }
+    .sidebarRightInside{
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
 
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">App</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Overview</a></li>
+      <li><a href="#">Search Bar</a></li>
+      <li><a href="#">App Search</a></li>
+      <li><a href="#">R&D Issue</a></li>
+      <li><a href="#">Requirement Overview</a></li>
+      <li><a href="#">UAE</a></li>
+      <li><a href="#">Spain</a></li>
+      <li><a href="#">Asia</a></li>
+      <li><a href="#">Africa</a></li>
+      <li><a href="#">Test Tra</a></li>
+      <li>
+          
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-9 backdrop">
+      Left
+      <!-- Graphs -->
+
+      <!-- Graphs -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="chartModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <p>Chart Here.</p>
+              <p>Chart Here.</p>
+              <p>Chart Here.</p>
+              <p>Chart Here.</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- Modal End -->
+
+    </div>
+    <div class="col-md-3 backdrop">
+        
+        <button type="button" class="btn btn-info btn-xs" id="openSetting">Settings</button>
+        
+    
+
+        <div class="sidebarRight">
+          <div class="sidebarRightInside">
+            <button type="button" class="btn btn-info btn-xs" id="openChart">Open Chart</button>
+            <button type="button" class="btn btn-info btn-xs" id="closeSetting">Close</button>
+          </div>
+        </div>
+    </div>
+
+
+    
+
+  </div>
+
+</div>
+
+</body>
+<script type="text/javascript">
+  
+  $("body").on("click","#closeSetting",function(){
+    if( $("#chartModal").attr("class").indexOf("in") === -1 ) {
+       $('.sidebarRight').animate({width:0});
+     }
+  });
+
+  $("body").on("click","#openSetting",function(){
+     $('.sidebarRight').animate({width:'100%'});
+  });
+
+  $("body").on("click","#closeChart",function(){
+    $("#chartModal").modal("hide");
+  });
+
+  $("body").on("click","#openChart",function(){
+        
+        if( $("#chartModal").attr("class").indexOf("in") === -1 ) {
+
+          $("#chartModal").modal("show");  
+          $('.modal-backdrop').appendTo('.backdrop');   
+          
+          //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+          $('body').removeClass("modal-open")
+          $('body').css("padding-right","");   
+        }  
+    }).on('hide.bs.modal', function () {
+        $(".backdrop").find('.modal-backdrop').remove();
+    });
+
+</script>
+</html>
