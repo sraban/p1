@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Highcharts</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
+
+
+  <style id="compiled-css" type="text/css">
+      .modal {
+          width: 300px !important;
+          max-height: 500px !important;
+        }
+
+        .modal-content {
+          padding: 0px !important;
+        }
+
+    /* EOS */
+  </style>
+
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<div id="container1" style="width: 600px;"></div>
+
+<!-- Modal Structure -->
+<div id="highcharts-modal" class="modal">
+  <div class="modal-content">
+    <div id="container2" style="width: 300px; height: 500px;"></div>
+  </div>
+</div>
+
+
+<!-- TODO: Missing CoffeeScript 2 -->
+
+<script type="text/javascript">//<![CDATA[
+
+
+$(function() {
+  var options = {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: ''
+    },
+    credits: {
+      enabled: false
+    },
+    legend: {
+      enabled: false
+    },
+    xAxis: {
+      tickWidth: 0,
+      labels: {
+        enabled: false
+      }
+    },
+    yAxis: {
+      title: {
+        text: ''
+      }
+    },
+    series: [{
+      data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+    }]
+  };
+
+  Highcharts.chart('container1', options);
+  Highcharts.chart('container2', options);
+
+  $('#container1').bind('click', function() {
+    $('#highcharts-modal').modal('open');
+  });
+});
+
+
+
+  //]]>
+</script>
+
+
+</body>
+</html>
